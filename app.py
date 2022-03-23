@@ -1,23 +1,23 @@
 from enum import unique
 import re
 from flask import Flask, render_template
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///FinKit.db'
-#db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 
-#class Accounts(db.Model):
-#    id = db.Column(db.Integer(), primary_key=True)
-#    FirstName = db.Column(db.String(length=30), nullable=False)
-#    LastName = db.Column(db.String(length=30), nullable=False)
-#    Email = db.Column(db.String(length=30), nullable=False)
-#    Username = db.Column(db.String(length=30), nullable=False, unique=True)
-#    AccountType = db.Column(db.String(length=30), nullable=False)
-#
-#    def __repr__(self):
-#        return f'Accounts {self.Username}'
+class Accounts(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    FirstName = db.Column(db.String(length=30), nullable=False)
+    LastName = db.Column(db.String(length=30), nullable=False)
+    Email = db.Column(db.String(length=30), nullable=False)
+    Username = db.Column(db.String(length=30), nullable=False, unique=True)
+    AccountType = db.Column(db.String(length=30), nullable=False)
+
+    def __repr__(self):
+        return f'Accounts {self.Username}'
 
 @app.route('/')
 @app.route('/home')
