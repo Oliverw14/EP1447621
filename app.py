@@ -38,5 +38,5 @@ def stock_page():
     
 @app.route('/admin')
 def admin_page():
-    Accounts = Accounts.query.all()
-    return render_template('accountInfo.html', Accounts=Accounts )
+    accounts = Accounts.query.all()
+    return render_template('accountInfo.html', Accounts=accounts )
