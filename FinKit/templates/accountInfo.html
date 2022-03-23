@@ -13,20 +13,18 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Username</th>
-                <th scope="col">AccountType</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             <!-- Your rows inside the table HERE: -->
-            {% for account in Accounts %}
+            {% for user in Users %}
                 <tr>
-                    <td>{{ account.id }}</td>
-                    <td>{{ account.FirstName }}</td>
-                    <td>{{ account.LastName }}</td>
-                    <td>{{ account.Email }}</td>
-                    <td>{{ account.Username }}</td>
-                    <td>{{ account.AccountType }}</td>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.FirstName }}</td>
+                    <td>{{ user.LastName }}</td>
+                    <td>{{ user.Email }}</td>
+                    <td>{{ user.Username }}</td>
                     <td>
                         <button class="btn btn-outline btn-info">Edit Info</button>
                         <button class="btn btn-outline btn-success">View Account</button>
