@@ -1,7 +1,7 @@
 import imp
 import re
 from FinKit import app
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash, get_flashed_messages
 from FinKit.models import Accounts, User
 from FinKit.forms import RegisterForm
 from FinKit import db
@@ -30,7 +30,7 @@ def register_page():
 
     if form.errors != {}:#if there are no errors from validators
         for err_msg in form.errors.values():
-            print(f'There was an error in creating a user: {err_msg}')
+            flash(f'There was an error in creating a user: {err_msg}', category='danger')
 
     return render_template('register.html', form=form)
 
