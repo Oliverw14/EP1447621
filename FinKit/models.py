@@ -28,7 +28,6 @@ class User(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.Password_hash, attempted_password)
         
 
-
 class Accounts(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     FirstName = db.Column(db.String(length=30), nullable=False)

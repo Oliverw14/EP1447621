@@ -28,3 +28,12 @@ class LoginForm(FlaskForm):
     username = StringField(label='Username:', validators = [DataRequired()])
     password = PasswordField(label='Password:', validators=[DataRequired()])
     submit = SubmitField(label='Login')
+    
+class UserUpdateForm(FlaskForm):
+    username = StringField(label='Username:', validators = [Length(min=2, max=30)])
+    firstname = StringField(label='First Name:', validators=[Length(min=2, max=30)])
+    lastname = StringField(label='Last Name:', validators=[Length(min=2, max=30)])
+    email_address = StringField(label='Email Address:', validators=[Email()])
+    password_1 = PasswordField(label='Password:', validators=[Length(min=6)])
+    password_2 = PasswordField(label='Confirm Password:', validators=[Length(min=6)])
+    submit = SubmitField(label='Update Details')

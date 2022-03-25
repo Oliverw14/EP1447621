@@ -1,7 +1,7 @@
 from FinKit import app
-from flask import render_template, redirect, url_for, flash, get_flashed_messages
+from flask import render_template, redirect, request, url_for, flash, get_flashed_messages
 from FinKit.models import Accounts, User
-from FinKit.forms import RegisterForm, LoginForm
+from FinKit.forms import RegisterForm, LoginForm, UserUpdateForm
 from FinKit import db
 from flask_login import login_user, logout_user, login_required
 
@@ -53,10 +53,31 @@ def stock_page():
 @app.route('/admin')
 def admin_page():
     users = User.query.all()
-    return render_template('accountInfo.html', Users=users )
+    return render_template('adminPage.html', Users=users )
 
 @app.route('/logout')
 def logout_page():
     logout_user()
     flash("You have been logged out!", category='info')
     return redirect(url_for('home_page'))
+
+@app.route('/account/<int:id>', methods=['GET', 'POST'])
+@login_required
+def account_page(id):
+    form = UserUpdateForm()
+    show_user = User.query.filter_by(id=id).first()
+    if form.validate_on_submit():
+        show_user.Username = form.username.data
+        show_user.FirstName = form.firstname.data
+        show_user.LastName = form.lastname.data
+        show_user.Email = form.email_address.data
+        
+        db.session.commit()
+        flash(f'Details for {show_user.Username} updated', category='info')
+    
+    if form.errors != {}:#if there are no errors from validators
+        for err_msg in form.errors.values():
+            flash(f'There was an error in creating a user: {err_msg}', category='danger')
+        
+    
+    return render_template('account.html', form=form, user=show_user, id=id)

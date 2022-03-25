@@ -29,7 +29,7 @@
                     <td>{{ user.Password_hash }}</td>
                     <td>
                         <button class="btn btn-outline btn-info">Edit Info</button>
-                        <button class="btn btn-outline btn-success">View Account</button>
+                        <a href="{{ url_for('account_page', id=user.id) }}"><button class="btn btn-outline btn-success">View Account</button></a>
                     </td>
                 </tr>
             {% endfor %}
