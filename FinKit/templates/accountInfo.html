@@ -13,6 +13,7 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Username</th>
+                <th scope="col">Password</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -25,6 +26,7 @@
                     <td>{{ user.LastName }}</td>
                     <td>{{ user.Email }}</td>
                     <td>{{ user.Username }}</td>
+                    <td>{{ user.Password_hash }}</td>
                     <td>
                         <button class="btn btn-outline btn-info">Edit Info</button>
                         <button class="btn btn-outline btn-success">View Account</button>
